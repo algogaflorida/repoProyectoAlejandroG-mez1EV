@@ -284,7 +284,7 @@ function recaudacionSolidaria($mapa){
     $kgAprovechables = $toneladasAprovechables * $kgPorTonelada;
 
     $recaudacion = $kgAprovechables * $precioKg;
-    return round($recaudacion, 2);
+    return intval($recaudacion);
 }
 
 // =========================================
