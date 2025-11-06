@@ -172,8 +172,8 @@ function zonasAfectadas($mapa, $impactos){
     foreach ($impactos as $coordenada){
         $fila=$coordenada[0];
         $columna=$coordenada[1];
-        if ($mapa[$fila][$columna]=="C"){
-            $mapa[$fila][$columna]="Q";
+        if ($mapa[$fila][$columna] == "C"){
+            $mapa[$fila][$columna] = "Q";
         }
     }
 
@@ -208,11 +208,11 @@ function DañosTotales($mapa, $impactos){
     foreach ($impactos as $coordenada){
         $fila=$coordenada[0];
         $columna=$coordenada[1];
-        if ($mapa[$fila][$columna]=="0"){
-            $mapa[$fila][$columna]="X";
+        if ($mapa[$fila][$columna] == "0"){
+            $mapa[$fila][$columna] = "X";
         } 
-        if ($mapa[$fila][$columna]=="~"){
-            $mapa[$fila][$columna]="S";
+        if ($mapa[$fila][$columna] == "~"){
+            $mapa[$fila][$columna] = "S";
         }
     }
 
@@ -284,7 +284,7 @@ function recaudacionSolidaria($mapa){
     $kgAprovechables = $toneladasAprovechables * $kgPorTonelada;
 
     $recaudacion = $kgAprovechables * $precioKg;
-    return intval($recaudacion);
+    return round($recaudacion);
 }
 
 // =========================================
@@ -309,10 +309,10 @@ echo "<br>";
 mapaOriginal($mapaDañosTotales);
 
 $estimacionDeCostes=estimacionCostes($mapaDañosTotales);
-echo "Coste total de limpieza: " . number_format($estimacionDeCostes, 2, ",", ".") . " € <br>"; 
+echo "Coste total de limpieza: " . number_format($estimacionDeCostes) . " € <br>"; 
 $recaudacionTotal=recaudacionSolidaria($mapaDañosTotales);
-echo "Recaudación ONG Cocineros cósmicos: " . number_format($recaudacionTotal, 2, ",", ".") . " € <br>";
+echo "Recaudación ONG Cocineros cósmicos: " . number_format($recaudacionTotal) . " € <br>";
 $diferencia=$estimacionDeCostes-$recaudacionTotal;
-echo "Daños netos estimados: " . number_format($diferencia, 2, ",", ".") . " € <br>";
+echo "Daños netos estimados: " . number_format($diferencia) . " € <br>";
 
 ?>
