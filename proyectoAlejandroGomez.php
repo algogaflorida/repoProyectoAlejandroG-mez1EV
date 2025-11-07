@@ -196,10 +196,15 @@ function desodoranteEspacial($mapa) {
 
     mapaOriginal($mapa);
 
-    $totalDesodorante=$cabrasPorZona*$zonasNecesitadasDesodorante;
-    echo "<br>El total de cabras afectadas (pobrecillas macho) es: " . $totalDesodorante . " cabras <br>";
-    $mlTotalesNecesarios=($totalDesodorante*$mlPorCabra)/1000;
-    echo "El total necesario de desodorante para las cabras es: " . $mlTotalesNecesarios . " litros";
+    $arrayDatos = [];
+
+    $totalDesodorante = $cabrasPorZona*$zonasNecesitadasDesodorante;
+    $arrayDatos[0] = $totalDesodorante;
+
+    $mlTotalesNecesarios = ($totalDesodorante*$mlPorCabra)/1000;
+    $arrayDatos[1] = $mlTotalesNecesarios;
+
+    return $arrayDatos;
 }
 
 // Ejercicio 4
@@ -300,6 +305,9 @@ echo "<h1>Zonas habitadas afectadas</h1>";
 $mapaZonasAfectadas=zonasAfectadas($capraMajoris, $impacts);
 echo "<br>";
 $mapaCabrasAfectadas=desodoranteEspacial($mapaZonasAfectadas);
+echo "<br>El total de cabras afectadas (pobrecillas macho) es: " . $mapaCabrasAfectadas[0] . " cabras <br>";
+echo "El total necesario de desodorante para las cabras es: " . $mapaCabrasAfectadas[1] . " litros";
+
 
 echo "<br>";
 
@@ -309,10 +317,10 @@ echo "<br>";
 mapaOriginal($mapaDañosTotales);
 
 $estimacionDeCostes=estimacionCostes($mapaDañosTotales);
-echo "Coste total de limpieza: " . number_format($estimacionDeCostes) . " € <br>"; 
+echo "Coste total de limpieza: " . number_format($estimacionDeCostes, 0, ",", ".") . " € <br>"; 
 $recaudacionTotal=recaudacionSolidaria($mapaDañosTotales);
-echo "Recaudación ONG Cocineros cósmicos: " . number_format($recaudacionTotal) . " € <br>";
+echo "Recaudación ONG Cocineros cósmicos: " . number_format($recaudacionTotal, 0, ",", ".") . " € <br>";
 $diferencia=$estimacionDeCostes-$recaudacionTotal;
-echo "Daños netos estimados: " . number_format($diferencia) . " € <br>";
+echo "Daños netos estimados: " . number_format($diferencia, 0, ",", ".") . " € <br>";
 
 ?>
