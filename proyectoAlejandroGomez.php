@@ -253,7 +253,7 @@ function atmosferaPresente($mapa){
 
     for ($i=0;$i<count($mapa);$i++){
         for ($j=0;$j<count($mapa[$i]);$j++){
-            if ($mapa[$i][$j] == "~"){
+            if ($mapa[$i][$j] == "~" || $mapa[$i][$j] == "S"){
                 $atmosferaActual++;
             }
         }
@@ -282,14 +282,14 @@ function recaudacionSolidaria($mapa){
     $toneladasTotales = 1000;
     $kgPorTonelada = 1000;
     
-    $atmTotal = atmosferaPresente($mapa) + atmosferaAfectada($mapa);
+    $atmTotal = atmosferaPresente($mapa);
     $atmAfectada = atmosferaAfectada($mapa);
     
     $toneladasAprovechables = ($atmAfectada / $atmTotal) * $toneladasTotales;
     $kgAprovechables = $toneladasAprovechables * $kgPorTonelada;
 
     $recaudacion = $kgAprovechables * $precioKg;
-    return round($recaudacion);
+    return $recaudacion;
 }
 
 // =========================================
