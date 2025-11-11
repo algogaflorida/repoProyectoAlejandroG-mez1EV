@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    </link>
+</head>
+<body>
+    
 <?php
 // ===============================
 //  PROYECTO: LAS CABRAS DE SATURNO
@@ -194,8 +205,6 @@ function desodoranteEspacial($mapa) {
         }
     }
 
-    mapaOriginal($mapa);
-
     $arrayDatos = [];
 
     $totalDesodorante = $cabrasPorZona*$zonasNecesitadasDesodorante;
@@ -249,7 +258,7 @@ function estimacionCostes($mapa){
 
 // Ejercicio 6 
 function atmosferaPresente($mapa){
-    $atmosferaActual=0;
+    $atmosferaActual = 0;
 
     for ($i=0;$i<count($mapa);$i++){
         for ($j=0;$j<count($mapa[$i]);$j++){
@@ -263,7 +272,7 @@ function atmosferaPresente($mapa){
 }
 
 function atmosferaAfectada($mapa){
-    $atmosferaAfectada=0;
+    $atmosferaAfectada = 0;
 
     for ($i=0;$i<count($mapa);$i++){
         for ($j=0;$j<count($mapa[$i]);$j++){
@@ -321,10 +330,9 @@ function renderizarMapa($mapa){
                         break;
                     
                     }
-            $tabla .= "<td class='$tipo'>$simbolo<
-            /td>";
+            $tabla .= "<td class='$tipo'></td>";
                 }
-            $tabla .= '</td>';
+            $tabla .= '</tr>';
             }
         $tabla .= '</table>';
         
@@ -334,31 +342,30 @@ function renderizarMapa($mapa){
 // ESCRIBE AQUÍ TU PROGRAMA PRINCIPAL
 // =========================================
 
-echo "<h1>Mapa Original de Capri Majoris:</h1>";
-mapaOriginal($capraMajoris);
+echo "<h1>🌌 Mapa Original de Capri Majoris</h1>";
+echo renderizarMapa($capraMajoris);
 
-echo "<br>";
+echo "<h1>💥 Zonas habitadas afectadas</h1>";
+$mapaZonasAfectadas = zonasAfectadas($capraMajoris, $impacts);
+echo renderizarMapa($mapaZonasAfectadas);
+$mapaCabrasAfectadas = desodoranteEspacial($mapaZonasAfectadas);
+echo "🐐 El total de cabras afectadas (pobrecillas macho) es: " . $mapaCabrasAfectadas[0] . " cabras <br>";
+echo "🧴 El total necesario de desodorante para las cabras es: " . $mapaCabrasAfectadas[1] . " litros";
 
-echo "<h1>Zonas habitadas afectadas</h1>";
-$mapaZonasAfectadas=zonasAfectadas($capraMajoris, $impacts);
-echo "<br>";
-$mapaCabrasAfectadas=desodoranteEspacial($mapaZonasAfectadas);
-echo "<br>El total de cabras afectadas (pobrecillas macho) es: " . $mapaCabrasAfectadas[0] . " cabras <br>";
-echo "El total necesario de desodorante para las cabras es: " . $mapaCabrasAfectadas[1] . " litros";
+echo "<h1>🛠️ Mapa de daños totales</h1>";
+$mapaDañosTotales = DañosTotales($mapaZonasAfectadas, $impacts);
+echo renderizarMapa($mapaDañosTotales);
 
-
-echo "<br>";
-
-echo "<h1>Mapa de daños totales:</h1>";
-$mapaDañosTotales=DañosTotales($mapaZonasAfectadas, $impacts);
-echo "<br>";
-mapaOriginal($mapaDañosTotales);
-
-$estimacionDeCostes=estimacionCostes($mapaDañosTotales);
-echo "Coste total de limpieza: " . number_format($estimacionDeCostes, 0, ",", ".") . " € <br>"; 
-$recaudacionTotal=recaudacionSolidaria($mapaDañosTotales);
-echo "Recaudación ONG Cocineros cósmicos: " . number_format($recaudacionTotal, 0, ",", ".") . " € <br>";
-$diferencia=$estimacionDeCostes-$recaudacionTotal;
-echo "Daños netos estimados: " . number_format($diferencia, 0, ",", ".") . " € <br>";
+$estimacionDeCostes = estimacionCostes($mapaDañosTotales);
+echo "💸 Coste total de limpieza: " . number_format($estimacionDeCostes, 0, ",", ".") . " € <br>"; 
+$recaudacionTotal = recaudacionSolidaria($mapaDañosTotales);
+echo "🪐🧑‍🍳 Recaudación ONG Cocineros cósmicos: " . number_format($recaudacionTotal, 0, ",", ".") . " € <br>";
+$diferencia = $estimacionDeCostes-$recaudacionTotal;
+echo "🧾 Daños netos estimados: " . number_format($diferencia, 0, ",", ".") . " € <br>";
 
 ?>
+
+
+
+</body>
+</html>

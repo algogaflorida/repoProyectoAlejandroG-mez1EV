@@ -1,0 +1,55 @@
+
+body {
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;  
+  align-items: center;     
+  min-height: 100vh;        
+  margin: 0;
+  background-color: #E8F3EC;
+  color: #2E3D32;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+table.mapeado {
+  margin: 20px 0;
+  border: 2px solid #000;
+}
+
+.mapeado td {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+    border: 2px solid #000;
+
+}
+
+.mapeado td:hover{
+    background-color: #FFEA00;
+}
+
+.atmosfera {
+    background-color: #00B4D8;
+}       
+
+.atmosferacontaminada { 
+    background-color: #7B2CBF;
+} 
+
+.campo { 
+    background-color: #06D6A0;
+}            
+
+.quesificado { 
+    background-color: #FFD60A;
+}          
+
+.rocoso { 
+    background-color: #8D99AE;
+}            
+
+.rocosoafectado { 
+    background-color: #EF233C;
+}
