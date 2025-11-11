@@ -215,8 +215,7 @@ function DañosTotales($mapa, $impactos){
         $columna=$coordenada[1];
         if ($mapa[$fila][$columna] == "0"){
             $mapa[$fila][$columna] = "X";
-        } 
-        if ($mapa[$fila][$columna] == "~"){
+        } elseif ($mapa[$fila][$columna] == "~"){
             $mapa[$fila][$columna] = "S";
         }
     }
